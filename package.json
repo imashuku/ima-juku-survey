@@ -1,0 +1,13 @@
+{
+  "name": "ima-juku-survey",
+  "version": "1.0.0",
+  "description": "IMA-JUKU 生成AI活用セミナー 事前アンケートフォーム",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 3000",
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["ima-juku", "survey", "ai", "seminar"],
+  "author": "Step Out Marketing LLC",
+  "license": "MIT"
+}
