@@ -3,11 +3,24 @@
   "version": "1.0.0",
   "description": "IMA-JUKU 生成AI活用セミナー 事前アンケートフォーム",
   "main": "index.html",
+  "type": "module",
   "scripts": {
     "dev": "npx http-server -p 3000",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report"
   },
-  "keywords": ["ima-juku", "survey", "ai", "seminar"],
+  "keywords": [
+    "ima-juku",
+    "survey",
+    "ai",
+    "seminar"
+  ],
   "author": "Step Out Marketing LLC",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "http-server": "^14.1.1"
+  }
 }
