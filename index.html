@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,46 +11,46 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
-        
+
         .container {
             max-width: 800px;
             margin: 0 auto;
             background: white;
             border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
-        
+
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 40px 30px;
             text-align: center;
         }
-        
+
         .header h1 {
             font-size: 28px;
             margin-bottom: 10px;
             font-weight: bold;
         }
-        
+
         .header .subtitle {
             font-size: 16px;
             opacity: 0.9;
             line-height: 1.6;
         }
-        
+
         .form-content {
             padding: 40px 30px;
         }
-        
+
         .intro {
             background: #f8f9fa;
             padding: 20px;
@@ -57,22 +58,22 @@
             margin-bottom: 30px;
             border-left: 4px solid #667eea;
         }
-        
+
         .intro p {
             line-height: 1.8;
             color: #333;
         }
-        
+
         .question-block {
             margin-bottom: 35px;
             padding-bottom: 35px;
             border-bottom: 1px solid #e0e0e0;
         }
-        
+
         .question-block:last-child {
             border-bottom: none;
         }
-        
+
         .question-label {
             font-size: 16px;
             font-weight: bold;
@@ -81,20 +82,20 @@
             display: flex;
             align-items: flex-start;
         }
-        
+
         .required {
             color: #e74c3c;
             margin-left: 5px;
             font-size: 14px;
         }
-        
+
         .question-description {
             font-size: 14px;
             color: #666;
             margin-bottom: 15px;
             line-height: 1.6;
         }
-        
+
         input[type="text"],
         input[type="email"],
         textarea,
@@ -107,7 +108,7 @@
             font-family: inherit;
             transition: border-color 0.3s;
         }
-        
+
         input[type="text"]:focus,
         input[type="email"]:focus,
         textarea:focus,
@@ -115,19 +116,50 @@
             outline: none;
             border-color: #667eea;
         }
-        
+
         textarea {
             min-height: 100px;
             resize: vertical;
         }
-        
+
         .radio-group,
         .checkbox-group {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-        
+
+        /* AIツール用のグリッドレイアウト */
+        .ai-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .tool-category {
+            margin-bottom: 25px;
+        }
+
+        .tool-category-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .checkbox-option input[type="checkbox"]:checked+label {
+            font-weight: 600;
+        }
+
+        .checkbox-option input[type="checkbox"]:checked~label,
+        .checkbox-option:has(input[type="checkbox"]:checked) {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
         .radio-option,
         .checkbox-option {
             display: flex;
@@ -138,13 +170,13 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        
+
         .radio-option:hover,
         .checkbox-option:hover {
             border-color: #667eea;
             background: #f8f9fa;
         }
-        
+
         .radio-option input[type="radio"],
         .checkbox-option input[type="checkbox"] {
             margin-right: 10px;
@@ -152,13 +184,13 @@
             height: 18px;
             cursor: pointer;
         }
-        
+
         .radio-option label,
         .checkbox-option label {
             cursor: pointer;
             flex: 1;
         }
-        
+
         .scale-group {
             display: flex;
             justify-content: space-between;
@@ -166,12 +198,12 @@
             gap: 10px;
             margin-top: 10px;
         }
-        
+
         .scale-option {
             flex: 1;
             text-align: center;
         }
-        
+
         .scale-option input[type="radio"] {
             display: block;
             margin: 0 auto 5px;
@@ -179,12 +211,12 @@
             height: 20px;
             cursor: pointer;
         }
-        
+
         .scale-label {
             font-size: 13px;
             color: #666;
         }
-        
+
         .scale-ends {
             display: flex;
             justify-content: space-between;
@@ -192,7 +224,7 @@
             font-size: 13px;
             color: #666;
         }
-        
+
         .submit-button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -205,12 +237,12 @@
             width: 100%;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        
+
         .submit-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
-        
+
         .footer-note {
             margin-top: 30px;
             padding: 20px;
@@ -220,43 +252,65 @@
             color: #666;
             line-height: 1.6;
         }
-        
+
         @media (max-width: 600px) {
             .header h1 {
                 font-size: 22px;
             }
-            
+
             .form-content {
                 padding: 25px 20px;
             }
-            
+
             .scale-group {
                 flex-wrap: wrap;
             }
-            
+
             .scale-option {
                 flex-basis: 20%;
+            }
+
+            .ai-tools-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
             <h1>IMA-JUKU 生成AI活用セミナー</h1>
             <p class="subtitle">事前アンケート｜太郎坊ベース</p>
         </div>
-        
+
         <form class="form-content" action="https://formspree.io/f/mdkyeywy" method="POST">
             <div class="intro">
                 <p>この度は「IMA-JUKU 生成AI活用セミナー」にお申し込みいただき、誠にありがとうございます。<br><br>
-                4名限定の少人数制だからこそ、お一人おひとりの現状や課題に寄り添った実践的な内容をご提供したいと考えております。事前に皆さまの生成AI活用状況や期待することをお聞かせいただくことで、より充実した学びの場を創出いたします。<br><br>
-                お手数ですが、以下のアンケートにご回答ください。</p>
+                    4名限定の少人数制だからこそ、お一人おひとりの現状や課題に寄り添った実践的な内容をご提供したいと考えております。事前に皆さまの生成AI活用状況や期待することをお聞かせいただくことで、より充実した学びの場を創出いたします。<br><br>
+                    お手数ですが、以下のアンケートにご回答ください。</p>
             </div>
 
             <!-- Formspree設定用の隠しフィールド -->
-            <input type="hidden" name="_subject" value="【IMA-JUKU】生成AIセミナー 事前アンケート回答">
+            <input type="hidden" name="_subject" id="form-subject" value="【IMA-JUKU】生成AIセミナー 事前アンケート回答">
             <input type="text" name="_gotcha" style="display:none">
+
+            <!-- 開催日選択 -->
+            <div class="question-block">
+                <div class="question-label">
+                    参加予定の開催日<span class="required">*</span>
+                </div>
+                <div class="question-description">ご参加予定のセミナー開催日を選択してください。</div>
+                <select name="開催日" id="event-date" required>
+                    <option value="">選択してください</option>
+                    <option value="2025年12月19日">2025年12月19日</option>
+                    <option value="2026年1月（予定）">2026年1月（予定）</option>
+                    <option value="2026年2月（予定）">2026年2月（予定）</option>
+                    <option value="その他">その他</option>
+                </select>
+                <input type="text" name="開催日_その他" id="event-date-other" placeholder="具体的な開催日をご記入ください（例：2026年3月15日）"
+                    style="display:none; margin-top: 10px;">
+            </div>
 
             <!-- 基本情報 -->
             <div class="question-block">
@@ -272,6 +326,20 @@
                 </div>
                 <input type="email" name="email" required placeholder="example@example.com">
                 <input type="hidden" name="_replyto" id="replyto">
+            </div>
+
+            <div class="question-block">
+                <div class="question-label">
+                    役職・職種<span class="required">*</span>
+                </div>
+                <select name="position" required>
+                    <option value="">選択してください</option>
+                    <option value="経営者・役員">経営者・役員</option>
+                    <option value="管理職（部長・課長等）">管理職（部長・課長等）</option>
+                    <option value="一般社員">一般社員</option>
+                    <option value="個人事業主・フリーランス">個人事業主・フリーランス</option>
+                    <option value="その他">その他</option>
+                </select>
             </div>
 
             <div class="question-block">
@@ -334,7 +402,8 @@
                 <div class="question-label">
                     生成AIの利用状況<span class="required">*</span>
                 </div>
-                <div class="question-description">現在、生成AIをどの程度利用していますか？</div>
+                <div class="question-description">現在、生成AIをどの程度利用していますか？<br><span
+                        style="color: #666; font-size: 13px;">※前回ご参加いただいた方は、変更があれば更新してください。</span></div>
                 <div class="radio-group">
                     <div class="radio-option">
                         <input type="radio" id="usage1" name="ai_usage" value="ほぼ毎日使っている" required>
@@ -359,51 +428,78 @@
                 </div>
             </div>
 
-            <div class="question-block">
+            <div class="question-block" id="ai-tools-block">
                 <div class="question-label">
-                    利用している生成AIツール<span class="required">*</span>
+                    利用している生成AIツール<span class="required" id="ai-tools-required">*</span>
                 </div>
-                <div class="question-description">現在利用している、または利用したことがあるツールを全て選択してください。</div>
-                <div class="checkbox-group">
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="tool1" name="ai_tools" value="ChatGPT（無料版）">
-                        <label for="tool1">ChatGPT（無料版）</label>
+                <div class="question-description">現在利用している、または利用したことがあるツールを全て選択してください。<br><span id="ai-tools-note"
+                        style="color: #666; font-size: 13px; display: none;">※「まだ使ったことがない」を選択された場合は、他の選択は不要です。</span>
+                </div>
+
+                <!-- テキスト生成AI（主要ツール） -->
+                <div class="tool-category">
+                    <div class="tool-category-title">📝 テキスト生成AI（主要ツール）</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool1" name="ai_tools" value="ChatGPT（無料版）">
+                            <label for="tool1">ChatGPT（無料版）</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool2" name="ai_tools" value="ChatGPT（有料版・Plus/Pro）">
+                            <label for="tool2">ChatGPT（有料版・Plus/Pro）</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool3" name="ai_tools" value="Claude（無料版）">
+                            <label for="tool3">Claude（無料版）</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool4" name="ai_tools" value="Claude（有料版・Pro）">
+                            <label for="tool4">Claude（有料版・Pro）</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="tool2" name="ai_tools" value="ChatGPT（有料版・Plus/Pro）">
-                        <label for="tool2">ChatGPT（有料版・Plus/Pro）</label>
+                </div>
+
+                <!-- テキスト生成AI（その他） -->
+                <div class="tool-category">
+                    <div class="tool-category-title">💬 テキスト生成AI（その他）</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool5" name="ai_tools" value="Google Gemini">
+                            <label for="tool5">Google Gemini</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool6" name="ai_tools" value="Microsoft Copilot">
+                            <label for="tool6">Microsoft Copilot</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool7" name="ai_tools" value="NotebookLM">
+                            <label for="tool7">NotebookLM</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="tool3" name="ai_tools" value="Claude（無料版）">
-                        <label for="tool3">Claude（無料版）</label>
+                </div>
+
+                <!-- 画像生成AI -->
+                <div class="tool-category">
+                    <div class="tool-category-title">🎨 画像生成AI</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool8" name="ai_tools" value="画像生成AI（DALL-E、Midjourney等）">
+                            <label for="tool8">画像生成AI（DALL-E、Midjourney等）</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="tool4" name="ai_tools" value="Claude（有料版・Pro）">
-                        <label for="tool4">Claude（有料版・Pro）</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="tool5" name="ai_tools" value="Google Gemini">
-                        <label for="tool5">Google Gemini</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="tool6" name="ai_tools" value="Microsoft Copilot">
-                        <label for="tool6">Microsoft Copilot</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="tool7" name="ai_tools" value="NotebookLM">
-                        <label for="tool7">NotebookLM</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="tool8" name="ai_tools" value="画像生成AI（DALL-E、Midjourney等）">
-                        <label for="tool8">画像生成AI（DALL-E、Midjourney等）</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="tool9" name="ai_tools" value="まだ使ったことがない">
-                        <label for="tool9">まだ使ったことがない</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="tool10" name="ai_tools" value="その他">
-                        <label for="tool10">その他</label>
+                </div>
+
+                <!-- その他・該当なし -->
+                <div class="tool-category">
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool9" name="ai_tools" value="まだ使ったことがない">
+                            <label for="tool9">まだ使ったことがない</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tool10" name="ai_tools" value="その他">
+                            <label for="tool10">その他</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -415,68 +511,105 @@
                 <input type="text" name="other_tools" placeholder="具体的なツール名をご記入ください">
             </div>
 
-            <div class="question-block">
+            <div class="question-block" id="use-cases-block">
                 <div class="question-label">
-                    業務での活用場面<span class="required">*</span>
+                    業務での活用場面<span class="required" id="use-cases-required">*</span>
                 </div>
-                <div class="question-description">生成AIをどのような業務で活用していますか？（複数選択可）</div>
-                <div class="checkbox-group">
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="use1" name="use_cases" value="文章作成（メール、提案書、報告書等）">
-                        <label for="use1">文章作成（メール、提案書、報告書等）</label>
+                <div class="question-description">生成AIをどのような業務で活用していますか？（複数選択可）<br><span id="use-cases-note"
+                        style="color: #666; font-size: 13px; display: none;">※「まだ使ったことがない」を選択された方は、この質問は任意です。</span>
+                </div>
+
+                <!-- 文書・コミュニケーション -->
+                <div class="tool-category">
+                    <div class="tool-category-title">📄 文書・コミュニケーション</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use1" name="use_cases" value="文章作成（メール、提案書、報告書等）">
+                            <label for="use1">文章作成（メール、提案書、報告書等）</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use5" name="use_cases" value="顧客対応・カスタマーサポート">
+                            <label for="use5">顧客対応・カスタマーサポート</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use9" name="use_cases" value="翻訳">
+                            <label for="use9">翻訳</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="use2" name="use_cases" value="アイデア出し・企画立案">
-                        <label for="use2">アイデア出し・企画立案</label>
+                </div>
+
+                <!-- 企画・マーケティング -->
+                <div class="tool-category">
+                    <div class="tool-category-title">💡 企画・マーケティング</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use2" name="use_cases" value="アイデア出し・企画立案">
+                            <label for="use2">アイデア出し・企画立案</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use4" name="use_cases" value="マーケティング（SNS投稿、広告文等）">
+                            <label for="use4">マーケティング（SNS投稿、広告文等）</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="use3" name="use_cases" value="情報収集・リサーチ">
-                        <label for="use3">情報収集・リサーチ</label>
+                </div>
+
+                <!-- 情報収集・分析 -->
+                <div class="tool-category">
+                    <div class="tool-category-title">🔍 情報収集・分析</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use3" name="use_cases" value="情報収集・リサーチ">
+                            <label for="use3">情報収集・リサーチ</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use6" name="use_cases" value="データ分析・集計">
+                            <label for="use6">データ分析・集計</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="use4" name="use_cases" value="マーケティング（SNS投稿、広告文等）">
-                        <label for="use4">マーケティング（SNS投稿、広告文等）</label>
+                </div>
+
+                <!-- クリエイティブ・技術 -->
+                <div class="tool-category">
+                    <div class="tool-category-title">🎨 クリエイティブ・技術</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use8" name="use_cases" value="画像・デザイン制作">
+                            <label for="use8">画像・デザイン制作</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use7" name="use_cases" value="プログラミング・システム開発">
+                            <label for="use7">プログラミング・システム開発</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="use5" name="use_cases" value="顧客対応・カスタマーサポート">
-                        <label for="use5">顧客対応・カスタマーサポート</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="use6" name="use_cases" value="データ分析・集計">
-                        <label for="use6">データ分析・集計</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="use7" name="use_cases" value="プログラミング・システム開発">
-                        <label for="use7">プログラミング・システム開発</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="use8" name="use_cases" value="画像・デザイン制作">
-                        <label for="use8">画像・デザイン制作</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="use9" name="use_cases" value="翻訳">
-                        <label for="use9">翻訳</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="use10" name="use_cases" value="学習・スキルアップ">
-                        <label for="use10">学習・スキルアップ</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="use11" name="use_cases" value="まだ業務では活用していない">
-                        <label for="use11">まだ業務では活用していない</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="use12" name="use_cases" value="その他">
-                        <label for="use12">その他</label>
+                </div>
+
+                <!-- 学習・その他 -->
+                <div class="tool-category">
+                    <div class="tool-category-title">📚 学習・その他</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use10" name="use_cases" value="学習・スキルアップ">
+                            <label for="use10">学習・スキルアップ</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use11" name="use_cases" value="まだ業務では活用していない">
+                            <label for="use11">まだ業務では活用していない</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="use12" name="use_cases" value="その他">
+                            <label for="use12">その他</label>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="question-block">
+            <div class="question-block" id="effectiveness-block">
                 <div class="question-label">
-                    生成AI活用の効果実感<span class="required">*</span>
+                    生成AI活用の効果実感<span class="required" id="effectiveness-required">*</span>
                 </div>
-                <div class="question-description">生成AIを活用することで、業務の効率化や生産性向上を実感していますか？</div>
+                <div class="question-description">生成AIを活用することで、業務の効率化や生産性向上を実感していますか？<br><span id="effectiveness-note"
+                        style="color: #666; font-size: 13px; display: none;">※「まだ使ったことがない」を選択された方は、この質問は任意です。</span>
+                </div>
                 <div class="scale-group">
                     <div class="scale-option">
                         <input type="radio" id="effect1" name="effectiveness" value="1" required>
@@ -505,60 +638,113 @@
                 </div>
             </div>
 
+            <div class="question-block">
+                <div class="question-label">
+                    セミナー当日のアカウント利用<span class="required">*</span>
+                </div>
+                <div class="question-description">当日、持参されるデバイスで、普段お使いの（または新規作成した）生成AIのアカウントにログイン可能ですか？</div>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="login1" name="account_login" value="ログイン可能（確認済み）" required>
+                        <label for="login1">ログイン可能（確認済み）</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="login2" name="account_login" value="ログインできると思う（未確認）" required>
+                        <label for="login2">ログインできると思う（未確認）</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="login3" name="account_login" value="社内制限等で不明・不安がある" required>
+                        <label for="login3">社内制限等で不明・不安がある</label>
+                    </div>
+                </div>
+            </div>
+
             <!-- 課題・期待 -->
             <div class="question-block">
                 <div class="question-label">
                     生成AI活用における課題<span class="required">*</span>
                 </div>
                 <div class="question-description">生成AIを活用する上で、現在感じている課題や困っていることを全て選択してください。</div>
-                <div class="checkbox-group">
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="challenge1" name="challenges" value="どう使えば良いかわからない">
-                        <label for="challenge1">どう使えば良いかわからない</label>
+
+                <!-- 使い方・スキル -->
+                <div class="tool-category">
+                    <div class="tool-category-title">💭 使い方・スキル</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="challenge1" name="challenges" value="どう使えば良いかわからない">
+                            <label for="challenge1">どう使えば良いかわからない</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="challenge2" name="challenges" value="プロンプト（指示の仕方）がうまく書けない">
+                            <label for="challenge2">プロンプト（指示の仕方）がうまく書けない</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="challenge3" name="challenges" value="期待した回答が得られない">
+                            <label for="challenge3">期待した回答が得られない</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="challenge4" name="challenges" value="どの業務に使えるか見極められない">
+                            <label for="challenge4">どの業務に使えるか見極められない</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="challenge2" name="challenges" value="プロンプト（指示の仕方）がうまく書けない">
-                        <label for="challenge2">プロンプト（指示の仕方）がうまく書けない</label>
+                </div>
+
+                <!-- 品質・信頼性 -->
+                <div class="tool-category">
+                    <div class="tool-category-title">🛡️ 品質・信頼性</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="challenge5" name="challenges" value="情報の正確性が不安">
+                            <label for="challenge5">情報の正確性が不安</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="challenge6" name="challenges" value="セキュリティ・情報漏洩のリスクが心配">
+                            <label for="challenge6">セキュリティ・情報漏洩のリスクが心配</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="challenge3" name="challenges" value="期待した回答が得られない">
-                        <label for="challenge3">期待した回答が得られない</label>
+                </div>
+
+                <!-- 組織・運用 -->
+                <div class="tool-category">
+                    <div class="tool-category-title">🏢 組織・運用</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="challenge7" name="challenges" value="社内での活用ルールが定まっていない">
+                            <label for="challenge7">社内での活用ルールが定まっていない</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="challenge8" name="challenges" value="従業員がうまく使いこなせていない">
+                            <label for="challenge8">従業員がうまく使いこなせていない</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="challenge4" name="challenges" value="どの業務に使えるか見極められない">
-                        <label for="challenge4">どの業務に使えるか見極められない</label>
+                </div>
+
+                <!-- コスト・情報 -->
+                <div class="tool-category">
+                    <div class="tool-category-title">💰 コスト・情報</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="challenge9" name="challenges" value="コストが負担">
+                            <label for="challenge9">コストが負担</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="challenge10" name="challenges" value="最新情報にキャッチアップできていない">
+                            <label for="challenge10">最新情報にキャッチアップできていない</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="challenge5" name="challenges" value="情報の正確性が不安">
-                        <label for="challenge5">情報の正確性が不安</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="challenge6" name="challenges" value="セキュリティ・情報漏洩のリスクが心配">
-                        <label for="challenge6">セキュリティ・情報漏洩のリスクが心配</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="challenge7" name="challenges" value="社内での活用ルールが定まっていない">
-                        <label for="challenge7">社内での活用ルールが定まっていない</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="challenge8" name="challenges" value="従業員がうまく使いこなせていない">
-                        <label for="challenge8">従業員がうまく使いこなせていない</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="challenge9" name="challenges" value="コストが負担">
-                        <label for="challenge9">コストが負担</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="challenge10" name="challenges" value="最新情報にキャッチアップできていない">
-                        <label for="challenge10">最新情報にキャッチアップできていない</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="challenge11" name="challenges" value="特に課題は感じていない">
-                        <label for="challenge11">特に課題は感じていない</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="challenge12" name="challenges" value="その他">
-                        <label for="challenge12">その他</label>
+                </div>
+
+                <!-- その他 -->
+                <div class="tool-category">
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="challenge11" name="challenges" value="特に課題は感じていない">
+                            <label for="challenge11">特に課題は感じていない</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="challenge12" name="challenges" value="その他">
+                            <label for="challenge12">その他</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -568,7 +754,8 @@
                     具体的な課題やエピソード
                 </div>
                 <div class="question-description">上記で選択した課題について、具体的なエピソードや状況があれば教えてください。セミナーでの実践的な解決策提示に活かします。</div>
-                <textarea name="challenge_details" placeholder="例：提案書作成にChatGPTを使っているが、毎回一から指示を書くので時間がかかってしまう。テンプレート化したいが方法がわからない。"></textarea>
+                <textarea name="challenge_details"
+                    placeholder="例：提案書作成にChatGPTを使っているが、毎回一から指示を書くので時間がかかってしまう。テンプレート化したいが方法がわからない。"></textarea>
             </div>
 
             <div class="question-block">
@@ -576,54 +763,93 @@
                     セミナーで学びたいこと<span class="required">*</span>
                 </div>
                 <div class="question-description">今回のセミナーで特に学びたいこと、解決したいことを全て選択してください。</div>
-                <div class="checkbox-group">
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="learn1" name="learning_goals" value="効果的なプロンプトの書き方">
-                        <label for="learn1">効果的なプロンプトの書き方</label>
+
+                <!-- スキル・技術 -->
+                <div class="tool-category">
+                    <div class="tool-category-title">🎯 スキル・技術</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="learn1" name="learning_goals" value="効果的なプロンプトの書き方">
+                            <label for="learn1">効果的なプロンプトの書き方</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="learn3" name="learning_goals" value="複数のAIツールの使い分け方">
+                            <label for="learn3">複数のAIツールの使い分け方</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="learn11" name="learning_goals" value="カスタムGPTsやClaudeプロジェクトの作り方">
+                            <label for="learn11">カスタムGPTsやClaudeプロジェクトの作り方</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="learn2" name="learning_goals" value="自社業務への具体的な活用方法">
-                        <label for="learn2">自社業務への具体的な活用方法</label>
+                </div>
+
+                <!-- 業務活用 -->
+                <div class="tool-category">
+                    <div class="tool-category-title">💼 業務活用</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="learn2" name="learning_goals" value="自社業務への具体的な活用方法">
+                            <label for="learn2">自社業務への具体的な活用方法</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="learn4" name="learning_goals" value="業務自動化・効率化の具体例">
+                            <label for="learn4">業務自動化・効率化の具体例</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="learn5" name="learning_goals" value="生成AIを使った営業・マーケティング手法">
+                            <label for="learn5">生成AIを使った営業・マーケティング手法</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="learn3" name="learning_goals" value="複数のAIツールの使い分け方">
-                        <label for="learn3">複数のAIツールの使い分け方</label>
+                </div>
+
+                <!-- 品質・セキュリティ -->
+                <div class="tool-category">
+                    <div class="tool-category-title">🛡️ 品質・セキュリティ</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="learn6" name="learning_goals" value="情報の正確性を確保する方法">
+                            <label for="learn6">情報の正確性を確保する方法</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="learn7" name="learning_goals" value="セキュリティ対策・社内ルールの作り方">
+                            <label for="learn7">セキュリティ対策・社内ルールの作り方</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="learn4" name="learning_goals" value="業務自動化・効率化の具体例">
-                        <label for="learn4">業務自動化・効率化の具体例</label>
+                </div>
+
+                <!-- 組織・導入 -->
+                <div class="tool-category">
+                    <div class="tool-category-title">🏢 組織・導入</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="learn8" name="learning_goals" value="従業員への導入・教育方法">
+                            <label for="learn8">従業員への導入・教育方法</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="learn5" name="learning_goals" value="生成AIを使った営業・マーケティング手法">
-                        <label for="learn5">生成AIを使った営業・マーケティング手法</label>
+                </div>
+
+                <!-- 情報・事例 -->
+                <div class="tool-category">
+                    <div class="tool-category-title">📊 情報・事例</div>
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="learn9" name="learning_goals" value="最新のAI活用トレンド">
+                            <label for="learn9">最新のAI活用トレンド</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="learn10" name="learning_goals" value="他社の成功事例">
+                            <label for="learn10">他社の成功事例</label>
+                        </div>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="learn6" name="learning_goals" value="情報の正確性を確保する方法">
-                        <label for="learn6">情報の正確性を確保する方法</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="learn7" name="learning_goals" value="セキュリティ対策・社内ルールの作り方">
-                        <label for="learn7">セキュリティ対策・社内ルールの作り方</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="learn8" name="learning_goals" value="従業員への導入・教育方法">
-                        <label for="learn8">従業員への導入・教育方法</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="learn9" name="learning_goals" value="最新のAI活用トレンド">
-                        <label for="learn9">最新のAI活用トレンド</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="learn10" name="learning_goals" value="他社の成功事例">
-                        <label for="learn10">他社の成功事例</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="learn11" name="learning_goals" value="カスタムGPTsやClaudeプロジェクトの作り方">
-                        <label for="learn11">カスタムGPTsやClaudeプロジェクトの作り方</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="learn12" name="learning_goals" value="その他">
-                        <label for="learn12">その他</label>
+                </div>
+
+                <!-- その他 -->
+                <div class="tool-category">
+                    <div class="ai-tools-grid">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="learn12" name="learning_goals" value="その他">
+                            <label for="learn12">その他</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -633,7 +859,8 @@
                     セミナーで解決したい具体的な課題<span class="required">*</span>
                 </div>
                 <div class="question-description">このセミナーを通じて、どのような状態を実現したいですか？できるだけ具体的にお書きください。</div>
-                <textarea name="specific_goals" required placeholder="例：月末の請求書作成業務を半自動化して、2時間かかっている作業を30分に短縮したい。そのために必要な生成AIの活用方法を学びたい。"></textarea>
+                <textarea name="specific_goals" required
+                    placeholder="例：月末の請求書作成業務を半自動化して、2時間かかっている作業を30分に短縮したい。そのために必要な生成AIの活用方法を学びたい。"></textarea>
             </div>
 
             <div class="question-block">
@@ -669,7 +896,8 @@
                 <div class="question-label">
                     太郎坊ベースへの期待
                 </div>
-                <div class="question-description">少人数制の学びの場として、「同じ釜の飯を食べる」体験を通じた交流も大切にしています。セミナー以外の面で期待することがあれば教えてください。</div>
+                <div class="question-description">少人数制の学びの場として、「同じ釜の飯を食べる」体験を通じた交流も大切にしています。セミナー以外の面で期待することがあれば教えてください。
+                </div>
                 <textarea name="expectations" placeholder="例：他の経営者の方との本音のディスカッションを楽しみにしています。"></textarea>
             </div>
 
@@ -694,13 +922,226 @@
 
     <script>
         // メールアドレスを_replytoにコピー（自動返信用）
-        document.querySelector('input[name="email"]').addEventListener('input', function(e) {
+        document.querySelector('input[name="email"]').addEventListener('input', function (e) {
             document.getElementById('replyto').value = e.target.value;
         });
 
+        // 開催日選択に応じてFormspreeの件名を動的に更新
+        const eventDateSelect = document.getElementById('event-date');
+        const eventDateOtherInput = document.getElementById('event-date-other');
+        const formSubjectInput = document.getElementById('form-subject');
+
+        function updateFormSubject() {
+            const selectedDate = eventDateSelect.value;
+            let dateValue = selectedDate;
+
+            // 「その他」が選択されている場合は、テキスト入力欄の値を優先
+            if (selectedDate === 'その他' && eventDateOtherInput.value) {
+                dateValue = eventDateOtherInput.value;
+            }
+
+            if (dateValue && dateValue !== 'その他') {
+                // 日付から簡潔な表記を生成（例: "2025年12月19日" → "12/19"）
+                let dateLabel = dateValue;
+                if (dateValue.includes('年') && dateValue.includes('月') && dateValue.includes('日')) {
+                    const match = dateValue.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+                    if (match) {
+                        dateLabel = `${match[2]}/${match[3]}`;
+                    }
+                } else if (dateValue.includes('（予定）')) {
+                    dateLabel = dateValue.replace('（予定）', '');
+                }
+                formSubjectInput.value = `【IMA-JUKU】生成AIセミナー 事前アンケート回答（${dateLabel}開催分）`;
+            } else {
+                formSubjectInput.value = '【IMA-JUKU】生成AIセミナー 事前アンケート回答';
+            }
+        }
+
+        eventDateSelect.addEventListener('change', function () {
+            if (this.value === 'その他') {
+                eventDateOtherInput.style.display = 'block';
+                eventDateOtherInput.required = true;
+            } else {
+                eventDateOtherInput.style.display = 'none';
+                eventDateOtherInput.required = false;
+                eventDateOtherInput.value = '';
+            }
+            updateFormSubject();
+        });
+
+        eventDateOtherInput.addEventListener('input', function () {
+            updateFormSubject();
+        });
+
+        // 「まだ使ったことがない」選択時の処理
+        function handleNoUsageSelection() {
+            const noUsageTool = document.getElementById('tool9');
+            const noUsageCase = document.getElementById('use11');
+            const aiToolsBlock = document.getElementById('ai-tools-block');
+            const useCasesBlock = document.getElementById('use-cases-block');
+            const effectivenessBlock = document.getElementById('effectiveness-block');
+            const aiToolsRequired = document.getElementById('ai-tools-required');
+            const useCasesRequired = document.getElementById('use-cases-required');
+            const effectivenessRequired = document.getElementById('effectiveness-required');
+            const aiToolsNote = document.getElementById('ai-tools-note');
+            const useCasesNote = document.getElementById('use-cases-note');
+            const effectivenessNote = document.getElementById('effectiveness-note');
+
+            // ツールで「まだ使ったことがない」が選択されているかチェック
+            const isNoToolSelected = noUsageTool && noUsageTool.checked;
+            // または、利用状況で「まだ使ったことがない」が選択されているかチェック
+            const usageRadio = document.querySelector('input[name="ai_usage"][value="まだ使ったことがない"]');
+            const isNoUsageSelected = usageRadio && usageRadio.checked;
+            // または、業務活用場面で「まだ業務では活用していない」が選択されているかチェック
+            const isNoUseCaseSelected = noUsageCase && noUsageCase.checked;
+
+            const shouldMakeOptional = isNoToolSelected || isNoUsageSelected || isNoUseCaseSelected;
+
+            // AIツールの必須属性を制御
+            if (isNoToolSelected || isNoUsageSelected) {
+                if (aiToolsRequired) aiToolsRequired.style.display = 'none';
+                if (aiToolsNote) aiToolsNote.style.display = 'inline';
+                const toolInputs = aiToolsBlock?.querySelectorAll('input[type="checkbox"]');
+                if (toolInputs) {
+                    toolInputs.forEach(input => input.removeAttribute('required'));
+                }
+            } else {
+                if (aiToolsRequired) aiToolsRequired.style.display = 'inline';
+                if (aiToolsNote) aiToolsNote.style.display = 'none';
+            }
+
+
+            if (shouldMakeOptional) {
+                // 必須マークを非表示
+                if (useCasesRequired) useCasesRequired.style.display = 'none';
+                if (effectivenessRequired) effectivenessRequired.style.display = 'none';
+                // 注記を表示
+                if (useCasesNote) useCasesNote.style.display = 'inline';
+                if (effectivenessNote) effectivenessNote.style.display = 'inline';
+                // 必須属性を削除
+                const useCaseInputs = useCasesBlock?.querySelectorAll('input[type="checkbox"]');
+                const effectivenessInputs = effectivenessBlock?.querySelectorAll('input[type="radio"]');
+                if (useCaseInputs) {
+                    useCaseInputs.forEach(input => input.removeAttribute('required'));
+                }
+                if (effectivenessInputs) {
+                    effectivenessInputs.forEach(input => input.removeAttribute('required'));
+                }
+            } else {
+                // 必須マークを表示
+                if (useCasesRequired) useCasesRequired.style.display = 'inline';
+                if (effectivenessRequired) effectivenessRequired.style.display = 'inline';
+                // 注記を非表示
+                if (useCasesNote) useCasesNote.style.display = 'none';
+                if (effectivenessNote) effectivenessNote.style.display = 'none';
+                // 必須属性を追加（ただし「まだ業務では活用していない」は除外）
+                const effectivenessInputs = effectivenessBlock?.querySelectorAll('input[type="radio"]');
+                if (effectivenessInputs && effectivenessInputs.length > 0) {
+                    effectivenessInputs.forEach(input => input.setAttribute('required', 'required'));
+                }
+            }
+        }
+
+        // 業務活用場面の変更を監視
+        const useCaseCheckboxes = document.querySelectorAll('input[name="use_cases"]');
+        useCaseCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                // 「まだ業務では活用していない」が選択された場合、他の選択を解除
+                if (this.id === 'use11' && this.checked) {
+                    useCaseCheckboxes.forEach(cb => {
+                        if (cb.id !== 'use11') {
+                            cb.checked = false;
+                        }
+                    });
+                } else if (this.id !== 'use11' && this.checked) {
+                    // 他の項目が選択された場合、「まだ業務では活用していない」を解除
+                    const noUseCaseCheckbox = document.getElementById('use11');
+                    if (noUseCaseCheckbox) {
+                        noUseCaseCheckbox.checked = false;
+                    }
+                }
+                handleNoUsageSelection();
+            });
+        });
+
+        // AI利用状況の変更を監視
+        document.querySelectorAll('input[name="ai_usage"]').forEach(radio => {
+            radio.addEventListener('change', handleNoUsageSelection);
+        });
+
+        // AIツールの変更を監視
+        const toolCheckboxes = document.querySelectorAll('input[name="ai_tools"]');
+        toolCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                // 「まだ使ったことがない」が選択された場合、他のツールの選択を解除
+                if (this.id === 'tool9' && this.checked) {
+                    toolCheckboxes.forEach(cb => {
+                        if (cb.id !== 'tool9') {
+                            cb.checked = false;
+                        }
+                    });
+                } else if (this.id !== 'tool9' && this.checked) {
+                    // 他のツールが選択された場合、「まだ使ったことがない」を解除
+                    const noUsageCheckbox = document.getElementById('tool9');
+                    if (noUsageCheckbox) {
+                        noUsageCheckbox.checked = false;
+                    }
+                }
+                handleNoUsageSelection();
+            });
+        });
+
+        // 初期状態をチェック
+        handleNoUsageSelection();
+
         // フォーム送信時の処理
-        document.querySelector('form').addEventListener('submit', function(e) {
-            // Formspreeが処理するため、prevent defaultは不要
+        document.querySelector('form').addEventListener('submit', function (e) {
+            // 「その他」が選択されている場合、具体的な日付を「開催日」フィールドに設定
+            if (eventDateSelect.value === 'その他' && eventDateOtherInput.value) {
+                eventDateSelect.value = eventDateOtherInput.value;
+            }
+
+            // カスタムバリデーション
+            const noUsageTool = document.getElementById('tool9');
+            const noUsageCase = document.getElementById('use11');
+            const usageRadio = document.querySelector('input[name="ai_usage"][value="まだ使ったことがない"]');
+            const isNoUsage = (noUsageTool && noUsageTool.checked) || (usageRadio && usageRadio.checked);
+            const isNoUseCase = noUsageCase && noUsageCase.checked;
+
+            // AIツールのバリデーション（「まだ使ったことがない」が選択されていない場合）
+            if (!isNoUsage) {
+                const toolInputs = document.querySelectorAll('input[name="ai_tools"]');
+                const hasToolSelected = Array.from(toolInputs).some(input => input.checked);
+                if (!hasToolSelected) {
+                    e.preventDefault();
+                    alert('利用している生成AIツールを1つ以上選択してください。');
+                    return false;
+                }
+            }
+
+            // 業務活用場面のバリデーション（「まだ業務では活用していない」が選択されていない場合）
+            if (!isNoUseCase && !isNoUsage) {
+                const useCaseInputs = document.querySelectorAll('input[name="use_cases"]');
+                const hasUseCaseSelected = Array.from(useCaseInputs).some(input => input.checked);
+                if (!hasUseCaseSelected) {
+                    e.preventDefault();
+                    alert('業務での活用場面を1つ以上選択してください。');
+                    return false;
+                }
+            }
+
+            // 効果実感のバリデーション（「まだ使ったことがない」が選択されていない場合）
+            if (!isNoUsage && !isNoUseCase) {
+                const effectivenessInputs = document.querySelectorAll('input[name="effectiveness"]');
+                const hasEffectivenessSelected = Array.from(effectivenessInputs).some(input => input.checked);
+                if (!hasEffectivenessSelected) {
+                    e.preventDefault();
+                    alert('生成AI活用の効果実感を選択してください。');
+                    return false;
+                }
+            }
+
+            // Formspreeが処理するため、prevent defaultは不要（バリデーションエラーがない場合）
             // 送信ボタンを無効化して二重送信を防止
             const submitButton = this.querySelector('button[type="submit"]');
             submitButton.disabled = true;
@@ -710,7 +1151,7 @@
         // 「その他」選択時の自動フォーカス
         document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
             if (checkbox.value === 'その他') {
-                checkbox.addEventListener('change', function() {
+                checkbox.addEventListener('change', function () {
                     if (this.checked) {
                         const nextInput = this.closest('.question-block').nextElementSibling?.querySelector('input[type="text"]');
                         if (nextInput) {
@@ -722,4 +1163,5 @@
         });
     </script>
 </body>
+
 </html>

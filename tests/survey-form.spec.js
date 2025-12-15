@@ -17,28 +17,55 @@ test.describe('IMA-JUKU Survey Form', () => {
   });
 
   test('should validate required fields', async ({ page }) => {
+    // フォームのバリデーション状態を確認
+    const form = page.locator('form');
+    
+    // フォームが無効であることを確認（必須フィールドが未入力のため）
+    const isFormValid = await form.evaluate((formEl) => formEl.checkValidity());
+    expect(isFormValid).toBe(false);
+    
+    // 最初の必須フィールド（開催日）が無効であることを確認
+    const eventDateSelect = page.locator('select[name="開催日"]');
+    const eventDateValue = await eventDateSelect.inputValue();
+    expect(eventDateValue).toBe(''); // 空であることを確認
+    
+    const isInvalid = await eventDateSelect.evaluate((el) => !el.validity.valid);
+    expect(isInvalid).toBeTruthy();
+    
     // フォーム送信ボタンをクリック
     await page.getByRole('button', { name: '送信する' }).click();
-
-    // HTML5バリデーションが発動することを確認
-    // 必須フィールドが入力されていない場合は送信されない
-    const nameInput = page.locator('input[name="name"]');
-    await expect(nameInput).toBeFocused();
+    
+    // HTML5バリデーションが発動し、フォーム送信が阻止されることを確認
+    // ページがリロードされていないことを確認（URLが変わっていない）
+    await expect(page.locator('h1')).toContainText('IMA-JUKU 生成AI活用セミナー');
+    
+    // 開催日フィールドがまだ無効であることを確認
+    const stillInvalid = await eventDateSelect.evaluate((el) => !el.validity.valid);
+    expect(stillInvalid).toBeTruthy();
   });
 
   test('should fill out basic required fields', async ({ page }) => {
     // 必須フィールドのみを入力してフォームが有効になることを確認
+    await page.selectOption('select[name="開催日"]', '2025年12月19日');
     await page.fill('input[name="name"]', 'テスト太郎');
     await page.fill('input[name="email"]', 'test@example.com');
+    await page.selectOption('select[name="position"]', '経営者・役員');
     await page.fill('input[name="company"]', 'テスト株式会社');
     await page.selectOption('select[name="industry"]', '製造業');
     await page.check('input[name="employees"][value="2〜5名"]');
     await page.check('input[name="ai_usage"][value="ほぼ毎日使っている"]');
+    await page.check('input[name="ai_tools"][value="ChatGPT（無料版）"]');
+    await page.check('input[name="use_cases"][value="文章作成（メール、提案書、報告書等）"]');
+    await page.check('input[name="effectiveness"][value="3"]');
+    await page.check('input[name="account_login"][value="ログイン可能（確認済み）"]');
+    await page.check('input[name="device"][value="ノートパソコン（Windows）"]');
     await page.fill('textarea[name="specific_goals"]', '業務効率を50%向上させたい');
 
     // 入力された値が正しく反映されていることを確認
+    await expect(page.locator('select[name="開催日"]')).toHaveValue('2025年12月19日');
     await expect(page.locator('input[name="name"]')).toHaveValue('テスト太郎');
     await expect(page.locator('input[name="email"]')).toHaveValue('test@example.com');
+    await expect(page.locator('select[name="position"]')).toHaveValue('経営者・役員');
     await expect(page.locator('textarea[name="specific_goals"]')).toHaveValue('業務効率を50%向上させたい');
 
     // 送信ボタンが有効であることを確認（実際には送信しない）
@@ -112,17 +139,48 @@ test.describe('IMA-JUKU Survey Form', () => {
 
   test('should have enabled submit button when required fields are filled', async ({ page }) => {
     // 必須フィールドを入力
+    await page.selectOption('select[name="開催日"]', '2025年12月19日');
     await page.fill('input[name="name"]', 'テスト太郎');
     await page.fill('input[name="email"]', 'test@example.com');
+    await page.selectOption('select[name="position"]', '経営者・役員');
     await page.fill('input[name="company"]', 'テスト株式会社');
     await page.selectOption('select[name="industry"]', '製造業');
     await page.check('input[name="employees"][value="2〜5名"]');
     await page.check('input[name="ai_usage"][value="ほぼ毎日使っている"]');
+    await page.check('input[name="ai_tools"][value="ChatGPT（無料版）"]');
+    await page.check('input[name="use_cases"][value="文章作成（メール、提案書、報告書等）"]');
+    await page.check('input[name="effectiveness"][value="3"]');
+    await page.check('input[name="account_login"][value="ログイン可能（確認済み）"]');
+    await page.check('input[name="device"][value="ノートパソコン（Windows）"]');
     await page.fill('textarea[name="specific_goals"]', 'テスト目標');
 
     const submitButton = page.getByRole('button', { name: '送信する' });
 
     // 送信ボタンが有効であることを確認
+    await expect(submitButton).toBeEnabled();
+  });
+
+  test('should make optional fields when "まだ使ったことがない" is selected', async ({ page }) => {
+    // 基本情報を入力
+    await page.selectOption('select[name="開催日"]', '2025年12月19日');
+    await page.fill('input[name="name"]', 'テスト太郎');
+    await page.fill('input[name="email"]', 'test@example.com');
+    await page.selectOption('select[name="position"]', '経営者・役員');
+    await page.fill('input[name="company"]', 'テスト株式会社');
+    await page.selectOption('select[name="industry"]', '製造業');
+    await page.check('input[name="employees"][value="2〜5名"]');
+    
+    // 「まだ使ったことがない」を選択
+    await page.check('input[name="ai_usage"][value="まだ使ったことがない"]');
+    await page.check('input[name="ai_tools"][value="まだ使ったことがない"]');
+    
+    // 必須項目のみを入力
+    await page.check('input[name="account_login"][value="ログイン可能（確認済み）"]');
+    await page.check('input[name="device"][value="ノートパソコン（Windows）"]');
+    await page.fill('textarea[name="specific_goals"]', 'テスト目標');
+
+    // 送信ボタンが有効であることを確認（業務活用場面と効果実感が任意になっている）
+    const submitButton = page.getByRole('button', { name: '送信する' });
     await expect(submitButton).toBeEnabled();
   });
 });
