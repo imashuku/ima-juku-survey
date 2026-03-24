@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMA-JUKU アンケート回答まとめ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hiragino+Kaku+Gothic+ProN&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .card {
+            transition: all 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="p-6">
+    <div class="max-w-7xl mx-auto">
+        <header class="mb-8 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">IMA-JUKU セミナー参加者分析</h1>
+                <p class="text-gray-600 mt-2">2025年12月19日開催分</p>
+            </div>
+            <div class="bg-indigo-600 text-white px-4 py-2 rounded-lg shadow">
+                <span class="font-bold text-xl">5</span> 名参加
+            </div>
+        </header>
+
+        <!-- 講義のポイント -->
+        <section class="mb-10 bg-white rounded-xl shadow-lg p-6 border-l-8 border-indigo-500">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                <span class="text-3xl mr-2">💡</span> 今日の講義のポイント
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-bold text-lg text-indigo-700 mb-2">1. 「具体的な業務活用」へのシフト</h3>
+                    <p class="text-gray-700">全員が「自社業務への具体的な活用」を求めています（「情報収集」「文章作成」などの基礎利用から一段階進みたい意向）。「なんとなく便利そう」ではなく「自分の仕事のここが変わる」という実感を持ち帰らせることが重要です。</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-indigo-700 mb-2">2. カスタマイズと連携</h3>
+                    <p class="text-gray-700">矢嶋さんお二人は「連携」や「発信」、そして「カスタムGPTs」に興味を持っています。「自分たち専用のAI」を作るイメージを見せると響きそうです。</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-indigo-700 mb-2">3. 精度への不安と運用</h3>
+                    <p class="text-gray-700">中山さんと矢嶋(裕)さんは「情報の正確性」に不安を持っています。「ハルシネーションとの付き合い方」や「人間による確認フロー」など、運用面での安心材料を提供すると信頼度が上がります。</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-indigo-700 mb-2">4. 参加者のAI習熟度</h3>
+                    <p class="text-gray-700">全員が「週数回〜月数回」の利用頻度。全くの初心者ではありませんが、日常のワークフローには完全に組み込まれていない段階です。「毎日開きたくなる」ユースケースの提示が鍵になります。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 参加者詳細カード -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="participants-container">
+            <!-- JSでここにカードを生成 -->
+        </div>
+
+        <!-- 自由回答全文セクション（折りたたみ式） -->
+        <section class="mt-10 mb-10">
+            <details class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <summary class="p-6 cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors flex items-center justify-between">
+                    <div class="flex items-center">
+                        <span class="text-2xl mr-3">📋</span>
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-800">自由回答 全文一覧</h2>
+                            <p class="text-sm text-gray-500">クリックで展開</p>
+                        </div>
+                    </div>
+                    <span class="text-gray-400 text-2xl">▼</span>
+                </summary>
+                <div class="p-6 border-t border-gray-200" id="free-responses-container">
+                    <!-- JSでここに自由回答を生成 -->
+                </div>
+            </details>
+        </section>
+    </div>
+
+    <script>
+        // CSVから解析したデータ（手動で整理・埋め込み）
+        const participants = [
+            {
+                name: "矢嶋 裕也",
+                id: "renger20ft",
+                company: "地球",
+                position: "経営者・役員",
+                industry: "卸売・小売業",
+                employees: "2〜5名",
+                usage_freq: "週に数回",
+                device: "Mac",
+                current_tools: ["なし(記述なし)"], 
+                challenges: ["使い方がわからない", "プロンプトが苦手", "期待する回答が出ない", "業務選定", "正確性への不安"],
+                specific_goal: "名刺代わりではなく、事業内容や社長の人柄を知ってもらえるHPを作りたい。作って終わりではなく育てていきたい。以前のラジオ番組の内容を反映させたい。",
+                learning_goals: ["ツールの使い分け", "カスタムGPTs作成", "業務活用", "営業・マーケティング", "成功事例"],
+                memo: "発信・ブランディング重視。ラジオコンテンツの再利用という具体的なネタあり。"
+            },
+            {
+                name: "中山 健一郎",
+                id: "ken_world99",
+                company: "株式会社ブローニュ",
+                position: "経営者・役員",
+                industry: "卸売・小売業",
+                employees: "1名（経営者のみ）",
+                usage_freq: "月に数回",
+                device: "Windows",
+                current_tools: ["まだ使ったことがない(と回答も、頻度は月数回)"],
+                challenges: ["使い方がわからない", "正確性への不安", "従業員の活用", "コスト"],
+                specific_goal: "経理、デザイン、商品制作、経営判断のアドバイスが欲しい。（※以前の回答では「在庫状況把握」「社員の業務効率化」への言及もあり）",
+                learning_goals: ["プロンプト作成", "業務活用", "正確性確保", "従業員教育"],
+                memo: "以前の回答と比較して、より具体的かつ経営判断に近い内容を求めている。社内運用・教育も視野に。"
+            },
+            {
+                name: "矢嶋 知克",
+                id: "aadre2022",
+                company: "地球",
+                position: "個人事業主・フリーランス",
+                industry: "卸売・小売業",
+                employees: "2〜5名",
+                usage_freq: "週に数回",
+                device: "iPad/Tablet",
+                current_tools: ["なし(記述なし)"],
+                challenges: ["どの業務に使えるか見極められない"],
+                specific_goal: "AIを使いこなして発注を受け、裕也さんとの連携をうまくやりたい。",
+                learning_goals: ["カスタムGPTs作成", "業務活用", "最新トレンド"],
+                memo: "裕也さんとの連携が鍵。チームでのAI活用（Teamプランや共有ワークスペース）が刺さる可能性。"
+            },
+            {
+                name: "相河 健志",
+                id: "k.aikawa",
+                company: "株式会社デクノヒューマンキャピタルラボ",
+                position: "経営者・役員",
+                industry: "士業（税理士・弁護士等）",
+                employees: "6〜10名",
+                usage_freq: "週に数回",
+                device: "Windows",
+                current_tools: ["ChatGPT(Plus/Pro)", "Gemini", "Copilot", "NotebookLM"],
+                challenges: ["社員間の温度差", "デザイナーの否定的な反応", "セキュリティ", "ルール未整備"],
+                specific_goal: "障害者福祉事業所の記録効率化、支援計画書作成、社労士業務のタスク・工程管理、クライアントへの提案。",
+                learning_goals: ["ツールの使い分け", "カスタムGPTs", "業務自動化", "セキュリティ・ルール作成", "従業員教育"],
+                memo: "既に複数ツールを活用中(中級者)。「社内浸透」「デザイナーの説得」など組織論が課題。社労士業務への具体的応用も明確。"
+            },
+            {
+                name: "西岡 様",
+                id: "nishioka",
+                company: "(詳細不明)",
+                position: "(詳細不明)",
+                industry: "(詳細不明)",
+                employees: "-",
+                usage_freq: "未経験/スマホのみ?",
+                device: "不明",
+                current_tools: ["なし"],
+                challenges: ["PC/スマホ操作への不安", "アカウント作成?"],
+                specific_goal: "まずはAIに触れてみる、音声入力を体験する。",
+                learning_goals: ["基本操作", "スマホでの活用"],
+                memo: "⚠️ 要サポート。PC持参不明。スマホアプリ(ChatGPT)の音声会話機能から入るのが吉。リテラシーの壁を「音声」で突破する体験を。"
+            }
+        ];
+
+        const container = document.getElementById('participants-container');
+
+        participants.forEach(p => {
+            const card = document.createElement('div');
+            card.className = "bg-white rounded-xl shadow-lg overflow-hidden card border-t-4 border-blue-500";
+            
+            // Generate Tools Badges
+            // （今回は具体的なツール名のデータがCSV上で空欄が多かったため省略、頻度を目立たせる）
+            
+            card.innerHTML = `
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">${p.name} <span class="text-sm font-normal text-gray-500 ml-1">様</span></h3>
+                            <p class="text-sm text-gray-600 mb-1">${p.company} / ${p.position}</p>
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
+                                💻 ${p.device}
+                            </span>
+                        </div>
+                        <div class="flex flex-col items-end">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded mb-1">${p.usage_freq}</span>
+                            <div class="flex flex-wrap gap-1 justify-end">
+                                ${p.current_tools.map(t => `<span class="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded border border-green-200">${t}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">具体的な目標・やりたいこと</div>
+                        <p class="text-gray-800 bg-yellow-50 p-3 rounded-lg text-sm leading-relaxed border border-yellow-100">
+                            ${p.specific_goal}
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">抱えている課題</div>
+                        <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                            ${p.challenges.map(c => `<li>${c}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">学びたいこと</div>
+                        <div class="flex flex-wrap gap-2">
+                            ${p.learning_goals.map(g => `<span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">${g}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <div class="flex items-start">
+                            <span class="text-xl mr-2">📝</span>
+                            <div class="text-sm text-gray-600">
+                                <span class="font-bold text-indigo-600">メモ:</span> ${p.memo}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        // 自由回答全文セクションの生成
+        const freeResponsesContainer = document.getElementById('free-responses-container');
+        
+        // CSVから抽出した自由回答データ（原文ママ）
+        const freeResponses = [
+            {
+                name: "矢嶋 裕也",
+                q1_label: "具体的にやりたいこと",
+                q1: "情報発信として面談しきれてない方などに、また、HPを見てもらうだけで少しでも情報発信をしたいと思います。名刺がわりのHPではなく、事業内容や、社長の人柄を知ってもらえるHPが作っていきたいと思います。また、作って満足ではなく育てていきたいと思います。以前知克のラジオ番組の内容を上手く反映させればと思います。",
+                q2_label: "課題・困っていること",
+                q2: "情報発信として面談しきれてない方などに、名刺がわりのHPではなく、事業内容や、社長の人柄を知ってもらえるHPが作っていきたいと思います。また、作って満足ではなく育てていきたいと思います。",
+                q3_label: "講義への期待",
+                q3: "やはり多くの方に出会いいろんな繋がりを持てたらと思います。"
+            },
+            {
+                name: "中山 健一郎",
+                q1_label: "具体的にやりたいこと",
+                q1: "経理、デザイン、商品制作、経営判断のアドバイス等、AIにアドバイスをもらいたい。",
+                q2_label: "課題・困っていること",
+                q2: "議事録作成や会社の課題などを教えてほしい。\nまた、売れる商品の作り方、会社の社員が業務効率化の為に使えるように。在庫状況の把握、経理や在庫確認などに使えないか？（過去回答）",
+                q3_label: "講義への期待",
+                q3: "有料で食事をしたり、経営やビジネスのことを話してみたい。"
+            },
+            {
+                name: "矢嶋 知克",
+                q1_label: "具体的にやりたいこと",
+                q1: "ますます使いこなして発注受け取るのも裕也さんとの連携もうまくいけるようになりたいです！",
+                q2_label: "課題・困っていること",
+                q2: "（記載なし）",
+                q3_label: "講義への期待",
+                q3: "（記載なし）"
+            },
+            {
+                name: "相河 健志",
+                q1_label: "具体的にやりたいこと",
+                q1: "障害者福祉事業所の日々の記録を効率化したい。\n支援計画書を効率的に作成したい。\n社労士業務のタスク管理や工程(進捗)管理に活用したい。\n社労士事務所のクライアントに提案したい。",
+                q2_label: "課題・困っていること",
+                q2: "社員間の温度差が大きい。\nやらなきゃってフリだけの社員の存在。\nデザイナーは、はじめから否定的。",
+                q3_label: "その他コメント",
+                q3: "大橋優子がいつもお世話になっております。\n当日楽しみにしております。よろしくお願いいたします。"
+            }
+        ];
+
+        freeResponses.forEach(r => {
+            const responseCard = document.createElement('div');
+            responseCard.className = 'mb-6 pb-6 border-b border-gray-100 last:border-b-0 last:mb-0 last:pb-0';
+            responseCard.innerHTML = `
+                <h3 class="text-lg font-bold text-indigo-700 mb-3">${r.name} 様</h3>
+                <div class="space-y-4">
+                    <div>
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">${r.q1_label}</div>
+                        <p class="text-gray-800 bg-gray-50 p-3 rounded-lg text-sm leading-relaxed whitespace-pre-wrap">${r.q1}</p>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">${r.q2_label}</div>
+                        <p class="text-gray-800 bg-gray-50 p-3 rounded-lg text-sm leading-relaxed whitespace-pre-wrap">${r.q2}</p>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">${r.q3_label}</div>
+                        <p class="text-gray-800 bg-gray-50 p-3 rounded-lg text-sm leading-relaxed whitespace-pre-wrap">${r.q3}</p>
+                    </div>
+                </div>
+            `;
+            freeResponsesContainer.appendChild(responseCard);
+        });
+    </script>
+</body>
+</html>
