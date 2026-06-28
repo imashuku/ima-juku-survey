@@ -56,18 +56,37 @@ Formspreeダッシュボードで以下を設定してください：
 
 ```
 .
-├── index.html          # アンケートフォーム本体
-├── vercel.json        # Vercelデプロイ設定
-├── package.json       # プロジェクト情報
-└── README.md          # このファイル
+├── index.html              # アンケートフォーム本体
+├── vercel.json            # Vercelデプロイ設定
+├── package.json           # プロジェクト情報
+├── playwright.config.js   # Playwright設定
+├── tests/
+│   └── survey-form.spec.js  # E2Eテスト
+├── email-message.txt      # メール本文（詳細版）
+├── email-message-short.txt # メール本文（短縮版）
+├── DEVELOPMENT_LOG.md     # 開発経緯
+└── README.md              # このファイル
 ```
 
 ## 🔗 リンク
 
+- **アンケートフォーム**: https://ima-juku-survey.vercel.app
 - Formspree Dashboard: https://formspree.io/forms/mdkyeywy
 - 太郎坊ベース: https://tarobo-base.vercel.app/
 
+## 📝 開発経緯
+
+開発の経緯や改善内容の詳細は [DEVELOPMENT_LOG.md](./DEVELOPMENT_LOG.md) をご覧ください。
+
+## 📧 メール送信用テンプレート
+
+参加者への案内メール用のテンプレート:
+- `email-message.txt`: 詳細版
+- `email-message-short.txt`: 短縮版
+
+来月のIMA-JUKU（2026年1月開催予定）でも同じフォームを再利用できます。
+
 ---
 
-**制作:** Step Out Marketing LLC
-**更新日:** 2025年11月16日
+**制作:** Step Out Marketing LLC  
+**更新日:** 2025年12月13日
