@@ -5,9 +5,17 @@
     {
       "src": "index.html",
       "use": "@vercel/static"
+    },
+    {
+      "src": "feedback.html",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
+    {
+      "src": "/feedback",
+      "dest": "/feedback.html"
+    },
     {
       "src": "/(.*)",
       "dest": "/index.html"
