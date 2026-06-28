@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMA-JUKU Vol.08 終了後アンケート</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .form-content {
+            padding: 40px 30px;
+        }
+
+        .intro {
+            background: #fff5f7;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #f5576c;
+        }
+
+        .intro p {
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .question-block {
+            margin-bottom: 35px;
+            padding-bottom: 35px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .question-block:last-child {
+            border-bottom: none;
+        }
+
+        .question-label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .required {
+            color: #e74c3c;
+            margin-left: 5px;
+            font-size: 14px;
+        }
+
+        .question-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #f5576c;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .radio-option:hover,
+        .checkbox-option:hover {
+            border-color: #f5576c;
+            background: #fff5f7;
+        }
+
+        .radio-option input[type="radio"],
+        .checkbox-option input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .radio-option label,
+        .checkbox-option label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .checkbox-option input[type="checkbox"]:checked~label,
+        .checkbox-option:has(input[type="checkbox"]:checked) {
+            border-color: #f5576c;
+            background: #fff5f7;
+        }
+
+        .scale-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .scale-option {
+            flex: 1;
+            text-align: center;
+        }
+
+        .scale-option input[type="radio"] {
+            display: block;
+            margin: 0 auto 5px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .scale-label {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .scale-ends {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .ai-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .tool-category {
+            margin-bottom: 15px;
+        }
+
+        .tool-category-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: #f5576c;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .form-content {
+                padding: 25px 20px;
+            }
+
+            .scale-group {
+                flex-wrap: wrap;
+            }
+
+            .scale-option {
+                flex-basis: 20%;
+            }
+
+            .ai-tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>IMA-JUKU Real Vol.08</h1>
+            <p class="subtitle">終了後アンケート｜2026年6月26日｜太郎坊ベース</p>
+        </div>
+
+        <form class="form-content" action="https://formspree.io/f/mdkyeywy" method="POST">
+            <div class="intro">
+                <p>本日はIMA-JUKUにご参加いただき、ありがとうございました！<br><br>
+                    「チャットから、エージェントへ — Codexアプリを使い倒す」をテーマに、AGENTS.md（AIへの引き継ぎ書）やskill（得意技の登録）まで体験いただきました。<br>
+                    率直なご感想をお聞かせください（2〜3分で完了します）。</p>
+            </div>
+
+            <input type="hidden" name="_subject" value="【IMA-JUKU】Vol.08 終了後アンケート回答（6/26開催分）">
+            <input type="hidden" name="アンケート種別" value="終了後アンケート">
+            <input type="hidden" name="開催日" value="2026年6月26日">
+            <input type="hidden" name="回" value="Vol.08">
+            <input type="text" name="_gotcha" style="display:none">
+
+            <!-- お名前 -->
+            <div class="question-block">
+                <div class="question-label">
+                    お名前<span class="required">*</span>
+                </div>
+                <input type="text" name="name" required placeholder="山田 太郎">
+            </div>
+
+            <!-- 全体満足度 -->
+            <div class="question-block">
+                <div class="question-label">
+                    セミナー全体の満足度<span class="required">*</span>
+                </div>
+                <div class="scale-group">
+                    <div class="scale-option">
+                        <input type="radio" id="sat1" name="satisfaction" value="1" required>
+                        <label for="sat1" class="scale-label">1</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="sat2" name="satisfaction" value="2" required>
+                        <label for="sat2" class="scale-label">2</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="sat3" name="satisfaction" value="3" required>
+                        <label for="sat3" class="scale-label">3</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="sat4" name="satisfaction" value="4" required>
+                        <label for="sat4" class="scale-label">4</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="sat5" name="satisfaction" value="5" required>
+                        <label for="sat5" class="scale-label">5</label>
+                    </div>
+                </div>
+                <div class="scale-ends">
+                    <span>不満</span>
+                    <span>非常に満足</span>
+                </div>
+            </div>
+
+            <!-- Codex（エージェント型AI）の手応え -->
+            <div class="question-block">
+                <div class="question-label">
+                    「チャット」と「エージェント」の違いは腹落ちしましたか？<span class="required">*</span>
+                </div>
+                <div class="question-description">AIに「聞く」から「任せる」へ──代わりに手を動かしてくれる、という感覚について。</div>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="codex1" name="codex_feel" value="はっきりわかった。チャットとは別物だと実感した" required>
+                        <label for="codex1">はっきりわかった。チャットとは別物だと実感した</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="codex2" name="codex_feel" value="違いはわかったが、まだ自分で使いこなせる自信はない" required>
+                        <label for="codex2">違いはわかったが、まだ自分で使いこなせる自信はない</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="codex3" name="codex_feel" value="正直、まだピンとこない部分が多い" required>
+                        <label for="codex3">正直、まだピンとこない部分が多い</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 使い倒すで響いた機能 -->
+            <div class="question-block">
+                <div class="question-label">
+                    「使い倒す」3つの中で、一番“使えそう”と思ったのは？<span class="required">*</span>
+                </div>
+                <div class="question-description">ご自身の仕事に効きそうなものを1つ選んでください。</div>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="lp1" name="useful_feature" value="AGENTS.md（AIへの引き継ぎ書）" required>
+                        <label for="lp1">AGENTS.md（AIへの引き継ぎ書／うちのやり方を覚えさせる）</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="lp2" name="useful_feature" value="skill（得意技の登録）" required>
+                        <label for="lp2">skill（得意技の登録／一度教えた作業を呼ぶだけ）</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="lp3" name="useful_feature" value="留守番（Codex Cloud・並列・スマホ操作）" required>
+                        <label for="lp3">留守番（Codex Cloudに投げる・並列・スマホで承認）</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="lp4" name="useful_feature" value="チャットとエージェントの住み分け" required>
+                        <label for="lp4">チャットとエージェントの住み分け（基本の考え方）</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 自分ごと：任せたい作業 -->
+            <div class="question-block">
+                <div class="question-label">
+                    あなたの会社で、Codexに“任せたい”作業は？<span class="required">*</span>
+                </div>
+                <div class="question-description">「誰がやっても同じ作業」から。例：月次の集計レポート、問い合わせメールの下書き、繰り返し事務の自動化。</div>
+                <textarea name="individual_work" required placeholder="例：毎月の売上集計をレポート化 / 問い合わせメールの下書きを量産 / ファイル整理を自動化"></textarea>
+            </div>
+
+            <!-- 個別ワーク満足度 -->
+            <div class="question-block">
+                <div class="question-label">
+                    今日の内容、ご自身の仕事に活かせそうですか？<span class="required">*</span>
+                </div>
+                <div class="scale-group">
+                    <div class="scale-option">
+                        <input type="radio" id="iw1" name="individual_satisfaction" value="1" required>
+                        <label for="iw1" class="scale-label">1</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="iw2" name="individual_satisfaction" value="2" required>
+                        <label for="iw2" class="scale-label">2</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="iw3" name="individual_satisfaction" value="3" required>
+                        <label for="iw3" class="scale-label">3</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="iw4" name="individual_satisfaction" value="4" required>
+                        <label for="iw4" class="scale-label">4</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="iw5" name="individual_satisfaction" value="5" required>
+                        <label for="iw5" class="scale-label">5</label>
+                    </div>
+                </div>
+                <div class="scale-ends">
+                    <span>活かせなさそう</span>
+                    <span>すぐ活かせそう</span>
+                </div>
+            </div>
+
+            <!-- 公開できたか -->
+            <div class="question-block">
+                <div class="question-label">
+                    AGENTS.md や skill を、自分でも作れそうですか？<span class="required">*</span>
+                </div>
+                <div class="question-description">「うちのルール」を5行書く・よくやる作業を1つ登録する、のハードル感について。</div>
+                <div class="scale-group">
+                    <div class="scale-option">
+                        <input type="radio" id="feel1" name="assistant_feeling" value="1" required>
+                        <label for="feel1" class="scale-label">1</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="feel2" name="assistant_feeling" value="2" required>
+                        <label for="feel2" class="scale-label">2</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="feel3" name="assistant_feeling" value="3" required>
+                        <label for="feel3" class="scale-label">3</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="feel4" name="assistant_feeling" value="4" required>
+                        <label for="feel4" class="scale-label">4</label>
+                    </div>
+                    <div class="scale-option">
+                        <input type="radio" id="feel5" name="assistant_feeling" value="5" required>
+                        <label for="feel5" class="scale-label">5</label>
+                    </div>
+                </div>
+                <div class="scale-ends">
+                    <span>自信がない</span>
+                    <span>作れそう</span>
+                </div>
+            </div>
+
+            <!-- 今日一番の発見 -->
+            <div class="question-block">
+                <div class="question-label">
+                    今日一番の発見は何でしたか？<span class="required">*</span>
+                </div>
+                <div class="question-description">驚いたこと、「おお！」と思ったことを一言でお願いします。</div>
+                <textarea name="biggest_discovery" required placeholder="例：AGENTS.mdで毎回の説明が要らなくなること / Codex Cloudに投げれば外出中も進むこと"></textarea>
+            </div>
+
+            <!-- 宿題宣言 -->
+            <div class="question-block">
+                <div class="question-label">
+                    次回までに試す「宿題」を宣言してください<span class="required">*</span>
+                </div>
+                <div class="question-description">今日の3つの宿題：①アプリを開いて日本語で1回頼む ②AGENTS.mdを5行書く ③よくやる作業を1つskill化。どれをやりますか？</div>
+                <textarea name="homework_declaration" required placeholder="例：AGENTS.mdを5行書く / 月次レポートをCodexに任せる / ひとつの作業をskillにする"></textarea>
+            </div>
+
+            <!-- 改善点 -->
+            <div class="question-block">
+                <div class="question-label">
+                    もっとこうしてほしかった点
+                </div>
+                <div class="question-description">時間配分、説明のわかりやすさ、サポート体制など、改善点があれば教えてください。</div>
+                <textarea name="improvements" placeholder="例：もう少しゆっくり進めてほしかった / 個別ワークの時間がもっと欲しかった"></textarea>
+            </div>
+
+            <!-- 次回参加意向 -->
+            <div class="question-block">
+                <div class="question-label">
+                    次回のIMA-JUKUについて<span class="required">*</span>
+                </div>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="next1" name="next_participation" value="ぜひ参加したい" required>
+                        <label for="next1">ぜひ参加したい</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="next2" name="next_participation" value="内容次第で参加したい" required>
+                        <label for="next2">内容次第で参加したい</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="next3" name="next_participation" value="知人・同僚にも紹介したい" required>
+                        <label for="next3">知人・同僚にも紹介したい</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="next4" name="next_participation" value="検討中" required>
+                        <label for="next4">検討中</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 次回のテーマ -->
+            <div class="question-block">
+                <div class="question-label">
+                    次回取り上げてほしいテーマ
+                </div>
+                <div class="question-description">複数選択可</div>
+                <div class="ai-tools-grid">
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="theme1" name="future_themes" value="AGENTS.md・skillの実践（自分仕様に育てる）">
+                        <label for="theme1">AGENTS.md・skillの実践（自分仕様に育てる）</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="theme2" name="future_themes" value="画像・動画生成AIの活用">
+                        <label for="theme2">画像・動画生成AIの活用</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="theme3" name="future_themes" value="AI×マーケティング・SNS活用">
+                        <label for="theme3">AI×マーケティング・SNS活用</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="theme4" name="future_themes" value="業務自動化の実践（請求書・日報など）">
+                        <label for="theme4">業務自動化の実践（請求書・日報など）</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="theme5" name="future_themes" value="AIエージェント・最新技術動向">
+                        <label for="theme5">AIエージェント・最新技術動向</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="theme6" name="future_themes" value="AI活用の社内展開・従業員教育">
+                        <label for="theme6">AI活用の社内展開・従業員教育</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 太郎坊ベースについて -->
+            <div class="question-block">
+                <div class="question-label">
+                    太郎坊ベースの雰囲気・食事について
+                </div>
+                <div class="question-description">会場や懇親会についてのご感想があればお聞かせください。</div>
+                <textarea name="venue_feedback" placeholder="自由にご記入ください"></textarea>
+            </div>
+
+            <!-- 自由コメント -->
+            <div class="question-block">
+                <div class="question-label">
+                    その他、ご感想やメッセージ
+                </div>
+                <textarea name="free_comment" placeholder="講師へのメッセージ、今後への期待など、なんでもお気軽にどうぞ"></textarea>
+            </div>
+
+            <button type="submit" class="submit-button">送信する</button>
+
+            <div class="footer-note">
+                本日はご参加ありがとうございました。<br>
+                アプリ＋AGENTS.md＋skillで、あなた専用の“デジタル従業員”を育てていきましょう。<br>
+                来月、宿題の成果を楽しみにしています！<br><br>
+                ご不明な点やご相談がございましたら、お気軽にお問い合わせください。
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const submitButton = this.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = '送信中...';
+        });
+    </script>
+</body>
+
+</html>
